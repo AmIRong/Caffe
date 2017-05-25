@@ -11,6 +11,9 @@
 		FD152DE21ED6A837006060B0 /* common.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = common.hpp; sourceTree = "<group>"; };
 		FD152DE31ED6B0C6006060B0 /* syncedmem.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = syncedmem.cpp; sourceTree = "<group>"; };
 		FD152DE41ED6B0C6006060B0 /* syncedmem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = syncedmem.hpp; sourceTree = "<group>"; };
+		FD152DE61ED6C3B4006060B0 /* base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = base.h; sourceTree = "<group>"; };
+		FD152DE81ED6C77C006060B0 /* blob.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = blob.cpp; sourceTree = "<group>"; };
+		FD152DE91ED6C77C006060B0 /* blob.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = blob.hpp; sourceTree = "<group>"; };
 		FDEC17791ED669DA00A7A2AA /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		FDEC177A1ED66B8E00A7A2AA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FDEC177B1ED66D8E00A7A2AA /* makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; };
@@ -19,13 +22,32 @@
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		FD152DE51ED6C2DE006060B0 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				FD152DE71ED6C6AA006060B0 /* caffeine */,
+				FD152DE61ED6C3B4006060B0 /* base.h */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		FD152DE71ED6C6AA006060B0 /* caffeine */ = {
+			isa = PBXGroup;
+			children = (
+				FD152DE11ED6A837006060B0 /* common.cpp */,
+				FD152DE21ED6A837006060B0 /* common.hpp */,
+				FD152DE81ED6C77C006060B0 /* blob.cpp */,
+				FD152DE91ED6C77C006060B0 /* blob.hpp */,
+			);
+			name = caffeine;
+			sourceTree = "<group>";
+		};
 		FDEC17721ED6664900A7A2AA = {
 			isa = PBXGroup;
 			children = (
+				FD152DE51ED6C2DE006060B0 /* src */,
 				FD152DE31ED6B0C6006060B0 /* syncedmem.cpp */,
 				FD152DE41ED6B0C6006060B0 /* syncedmem.hpp */,
-				FD152DE11ED6A837006060B0 /* common.cpp */,
-				FD152DE21ED6A837006060B0 /* common.hpp */,
 				FDEC177C1ED6999F00A7A2AA /* blob.cpp */,
 				FDEC177D1ED6999F00A7A2AA /* blob.hpp */,
 				FDEC177B1ED66D8E00A7A2AA /* makefile */,

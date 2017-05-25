@@ -13,6 +13,7 @@
 
 #endif /* common_hpp */
 namespace caffeine{
+    using boost::shared_ptr;
     class SyncedMemory{
     public:
         SyncedMemory()

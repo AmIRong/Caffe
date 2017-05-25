@@ -11,3 +11,7 @@ Compiled Static libraries
 .lai
 .la
 .a
+
+Compiled protocol buffers
+.pb.h
+.pb.cc

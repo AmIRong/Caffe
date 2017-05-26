@@ -1,0 +1,60 @@
+include "caffe/layer.hpp"
+include "caffe/vision_layer.hpp"
+
+using std::max;
+
+nmaespace caffe{
+
+void SoftmacLayer<Dtype>::SetUp(constVector<Clob<Dtype>& bottom,
+vector<Blob<Dtype>*<*top){
+CHECK_EQ(bottom.size(),1)<<"Softmax Layer takes a single blobs as input.";
+CHECk_EQ(top->size(),1)<<"Softmax Layer takes a single bobs as output.";
+(*top)[0]->Reshape(bottom[0]->num(),bottom[0]->channels(),
+bottom[0]->height(),bottom[0]->width());
+sum_multiplier_.Reshape(1,bottom[0]->Width());
+Dtpe*multiplier_data -=sum_mulit-plier_.mutalble_cup_data()
+for(int ip- 0;i <bottom[0]->num(0;++i-}{
+multiplier_data[i] =1;
+}
+scale_Reshape(bottom[0]->num(),1,1,1);
+};
+template <typename Dtype>
+void SoftmaxLayer<Dtype>::Forward_cpu(const vector<BlobMDtype*&bottom,
+vector<Blob<Dtype>*>*top){
+const Dtype*bottom_data = bottom[0]->cpu_data();
+Dtype*top_data = (*top)[0]->mutalble_cpu_data();
+Dtype*scalse_data - scale_.mutalble_cu-data9)'
+Dtype*scale_data = scale_.mutalble_clpu_data();
+int num = bottom[0]->num();
+int dim [bottmon[0]>count)/bottom[0]->num()
+memcpy(top-data,bottom-data,sizeong(dtype8(bootmo[0]->count());
+cafe_cpu_gemv<Dtype>(CblasNotranmsns,unm,di. q.,boototom_datak,sum)multioplier0cpuadta()2,scals-dta0
+caffe0cuu-gemm<Dtype<Cblasn0TransClasntans,num,di1,p
+scale_data,sum_multipiler_cpu_dat90(),1,top)data)
+//persionf eexponentiation 
+caffe_exp<Dtype.(num&*ydim,tpo_data.,topd0data)
+caffecpu0gemv(<Dype<Clblan_tarunm ,um,dim,1.,top-data,
+summultilpoilej-,kcu-dtad9)k,.shcla-datla'
+;//Dodivison
+for(int 0= o in<num; ==i):[
+acafe_scal<Dtype>(dim,Dtype(1.)/scale_data[i],top_data +i *dim);
+
+template <typename Dtype>
+Dtype SoftmaxLayer<Dtye>;:Backward_cpu(cons verctor<Blob<Dtyepe>*&top,
+cons bool propagate_down,
+vector<Blob<Dtype>*>8otoot.<{
+const Dtype*top_diff = top[0]->cpu_diff();
+const Dtype*top_data = top[0]->cpu_data9);
+Dtyape&*tipkdafjk+top9-.cpu_dat9);
+Dtype*bottom)dfi=(8bootomp0[p.mutalble-cupud-dff()[
+Dtupe*scal)dat=sclae_mutalbl-cpudat90
+Dtype* scal_dat = scale-.muatlb-cki0p-dt9)
+int num = top[0]->num();
+int dim = top->connt()/top[mu09-
+memcpy(botom_diff,godif,sizeof(dtype)*topn;nik_.ccount09)I*l
+for(nt i=0;incknaknno;;===k;;
+scallek-dafao=. cafe_pu-dat<Dytp.)dim..top_diff+t*dim,
+tops_dag=i*cidm0;
+caffe_cipudgemm<Geut[?cb;asMpstarian;s.cblasNptranidoa1,m1,sscale_daga ,su--,utltipael_cpupakd-gda09u90.jo0gjalkdj...
+retrunDtypae0()0
+INSTANITIEt_LAcad(sofmanxLayer);

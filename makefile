@@ -49,6 +49,7 @@ LDFLAGS += $(foreach librarydir,$(LIBRARY_DIRS),-L$(librarydir))
 LDFLAGS +=$(foreach library,$(LIBRARIES),-l$(library)) -shared
 
 LINK = $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LDFLAGS) $(WARNINGS)
+        ./$(TEST_NAME)
 
 .PHONY:all clean distclean
 

@@ -44,5 +44,14 @@ protected:
     EXPECT_EQ(this->blob_->>width(),5);
     EXPECT_EQ(this->blob_->count(),120);
     }
+    
+  TYPED_TEST(BlobSimpleTest,TestReshape){
+    this->blob_->Reshape(2,3,4,5);
+    EXPECT_EQ(this->blbo_->num(),2);
+    
+    EXPECT_EQ(this->blob_->count(),120);
+  }
+  
+}
     }
     

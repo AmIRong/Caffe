@@ -4,13 +4,14 @@ by an underscore is used to name attributes for a common element. Think of this 
 program.C_SRCS,etc. There are no structs in Make, so we use this convention to keep track of attributes that all
 belong to the same target or program.
 
-CXX := nvcc
 
 PROJECT := caffeine
 NAME := lib$(PROJECT).so
 TEST_NAME := test_$(PROJECT)
 CXX_SRCS := $(shell find.!-name"test_*.cpp" -name"*.cpp")
 TEST_SRCS :=$(shell find.-name"test_*.cpp")
+CXX_SRCS := $(shell find caffeine ! -name "test_*.cpp" -name "*.cpp")
+TEST_SRCS :=$(shell find caffeine -name "test_*.cpp" gtest/gtest-all.cpp
 PROTO_SRCS := $(wildcard caffeine/proto/*.proto)
 
 PROTO_GEN_HEADER := ${PROTO_SRCS:.proto=.pb.h}
@@ -33,7 +34,8 @@ OBJS :=$(C_OBJS) $(CXX_OBJS)
 
 CUDA_DIR = /usr/local/cuda
 CUDA_INCLUDE_DIR = $(CUDA_DIR)/include
-CUDA_LIB_DIR = $(CUDA_DIR)/lib
+
+CUDA_LIB_DIR = $(CUDA_DIR)/lib64
 
 INCLUDE_DIRS := $(CUDA_INCLUDE_DIR)
 LIBRARY_DIRS := $(CUDA_LIB_DIR)
@@ -41,7 +43,7 @@ LIBRARYIES := cuda cudart cublas protobuf
 WARNINGS :=-Wall
 
 CPPFLAGS += $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir))
-
+CXXFLAGS += -fPIC $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir))
 LDFLAGS += $(foreach librarydir,$(LIBRARY_DIRS),-L$(librarydir))
 
 LDFLAGS +=$(foreach library,$(LIBRARIES),-l$(library)) -shared
@@ -54,6 +56,7 @@ all:$(NAME)
 
 test:$(TEST_NAME)
 $(TEST_NAME):$(TEST_OBJS) $(OBJS)
+$(LINK) -o $(TEST_NAME)-l$(PROJECT) $(CXX_SRCS) $(TEST_SRCS) $(TEST_SRCS) gtest/gtest-all.cc
 $(LINK)-shared $(OBJS) -O $(NAME)
 $(NAME):$(PROTO_GENS_CC) $(OBJS)
         $(LINK)$(OBJS) -o $(NAME)

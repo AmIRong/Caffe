@@ -20,6 +20,10 @@ CXX_OBJS :=${CXX_SRCS:.proto=.pb.cc}
 PROTO_OBJS := ${PROTO_SRCS:.proto=.pb.o}
 OBJS :=$(CXX_OVJS) $(PROTO_OBJS)
 TEST_OBJS := ${TEST_SRCS:.cpp=.o}
+-CXX_SRCS := $(shell find caffeine ! -name "test_*.cpp" -name "*.cpp")
+
++CXX_SRCS := $(shell find caffeine ! -name "test_*.cpp" ! -name"_*.cpp" -name "*.cpp")
+
 
 
 

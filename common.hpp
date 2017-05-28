@@ -15,12 +15,7 @@
 namespace caffeine{
     using boost::shared_ptr;
     class SyncedMemory{
-    public:
-        SyncedMemory()
-        :cpu_ptr_(NULL),gpu_ptr_(NULL),size_(0),head_(SYNCED){};
-        explicit SyncedMemory(size_t size)
-        :cpu_ptr_(NULL),gpu_ptr_(NULL),head_(SYNCED),size_(size){};
-        
+
         ~SyncedMemory();
         const void* cpu_data();
         const void* gpu_data();
